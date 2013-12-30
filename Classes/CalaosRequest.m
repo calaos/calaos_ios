@@ -1109,10 +1109,10 @@ static CalaosRequest *sharedInstance = nil;
 - (void)sendAudioFile:(NSString *)soundFilePath toPlayer:(NSInteger)playerId withDelegate:(id)obj andDoneSelector:(SEL)doneSelector
 {
     NSLog(@"Sending file: %@", soundFilePath);
-    
+    /*
     NSString *data = [NSString stringWithFormat:@"{\"cn_user\":\"%@\",\"cn_pass\":\"%@\",\"action\":\"play_file\",\"player_id\":\"%d\"}", username, password, playerId];
     
-    NSURL *url = [NSURL URLWithString:[self computeCalaosUrl]];/*
+    NSURL *url = [NSURL URLWithString:[self computeCalaosUrl]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setDelegate:self];
     [request setDidFinishSelector:@selector(requestSendFinishedCallback:)];
@@ -1410,7 +1410,7 @@ static CalaosRequest *sharedInstance = nil;
             if ([listenBuffer length] > 0)
             {
                 sdata = listenBuffer;
-                listenBuffer = [NSString string];
+                listenBuffer = [NSMutableString string];
             }
             
             //Clean ending chars
