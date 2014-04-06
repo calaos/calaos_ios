@@ -488,6 +488,7 @@
     if (!pictureData)
     {
         NSLog(@"Failed to get camera picture");
+        return;
     }
     else
     {
