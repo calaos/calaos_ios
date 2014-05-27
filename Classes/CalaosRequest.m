@@ -22,7 +22,7 @@
 #define CALAOS_TCP_PORT         4456
 #endif
 
-enum { TAG_LOGIN, TAG_LISTEN, TAG_LISTENDATA };
+enum { TAG_LOGIN, TAG_LISTENDATA };
 
 NSString *const CalaosNotificationConnected = @"CalaosNotificationConnected";
 NSString *const CalaosNotificationLoginFailed = @"CalaosNotificationLoginFailed";
@@ -1376,9 +1376,9 @@ static CalaosRequest *sharedInstance = nil;
                 NSString *data = @"listen\n"; 
                 [listenSocket writeData:[data dataUsingEncoding:NSASCIIStringEncoding] 
                             withTimeout:-1 
-                                    tag:TAG_LISTEN];
+                                    tag:TAG_LISTENDATA];
                 
-                [listenSocket readDataWithTimeout:2.0 tag:TAG_LISTEN];
+                [listenSocket readDataWithTimeout:-1 tag:TAG_LISTENDATA];
             }
             else
             {
@@ -1431,11 +1431,6 @@ static CalaosRequest *sharedInstance = nil;
                 [self processListenNotification:msg];
             }
             
-            break;
-        }
-        case TAG_LISTEN:
-        {
-            [listenSocket readDataWithTimeout:-1 tag:TAG_LISTENDATA];
             break;
         }
         default:
